@@ -18,13 +18,22 @@
   <!-- create myExchange and bind myAnonymousQueue with my.routingkey.1 to the PC-EXCHANGE-->
   <rabbit:topic-exchange id="myExchange" name="QDM-EXCHANGE">
     <rabbit:bindings>
-      <rabbit:binding queue="myAnonymousQueue" pattern="my.#.*">
-      </rabbit:binding>
+      <rabbit:binding queue="myAnonymousQueue" pattern="my.#.*" />
+      <rabbit:binding queue="myAnonymousQueue" pattern="winner.#" />
     </rabbit:bindings>
   </rabbit:topic-exchange>
 
+  <!-- RMI Client Stub -->
+  <bean id="manejadorOfertasStub" class="org.springframework.remoting.rmi.RmiProxyFactoryBean">
+    <property name="serviceUrl" value="rmi://localhost:1199/servicioManejoOfertas"/>
+    <property name="serviceInterface" value="edu.eci.arsw.exam.remote.ManejadorOfertasStub"/>
+  </bean>
+
   <!-- instantiate AmqpListener a POJO that implements the message listener  -->
-  <bean id="messageListener" class="edu.eci.arsw.exam.events.OffertMessageListener" />
+  <bean id="messageListener" class="edu.eci.arsw.exam.events.OffertMessageListener">
+    <property name="stub" ref="manejadorOfertasStub" />
+  </bean>
+
   <!-- glue the listener and myAnonymousQueue to the container-->
   <rabbit:listener-container id="myListenerContainer" connection-factory="connectionFactory">
     <rabbit:listener ref="messageListener" queues="myAnonymousQueue" />

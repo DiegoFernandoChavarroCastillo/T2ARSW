@@ -19,4 +19,9 @@ public class OffertMessageProducer {
 	    amqpTemplate.convertAndSend("my.routingkey.1",message);
 	}
 
+    public void notifyWinner(String winnerId, String productCode) throws AmqpException {
+        String payload = winnerId + ":" + productCode;
+        amqpTemplate.convertAndSend("winner." + winnerId, payload);
+    }
+
 }

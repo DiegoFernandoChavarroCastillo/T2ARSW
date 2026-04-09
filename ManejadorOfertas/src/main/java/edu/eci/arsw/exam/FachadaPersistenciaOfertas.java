@@ -5,7 +5,7 @@
  */
 package edu.eci.arsw.exam;
 
-import java.util.LinkedHashMap;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.Map;
 
 /**
@@ -15,16 +15,16 @@ import java.util.Map;
 public class FachadaPersistenciaOfertas {
 
     //mapa <codigo,producto>
-    final private Map<String, Product> mapaProductosSolicitados = new LinkedHashMap<>();
+    final private Map<String, Product> mapaProductosSolicitados = new ConcurrentHashMap<>();
 
     //mapa <codigo,codigo del cliente con la mejor oferta>
-    final private Map<String, String> mapaOferentesAsignados = new LinkedHashMap<>();
+    final private Map<String, String> mapaOferentesAsignados = new ConcurrentHashMap<>();
 
     //mapa <codigo, monto de la mejor oferta>
-    final private Map<String, Integer> mapaMontosAsignados = new LinkedHashMap<>();
+    final private Map<String, Integer> mapaMontosAsignados = new ConcurrentHashMap<>();
 
     //mapa <codigo, numero de ofertas recibidas>
-    final private Map<String, Integer> mapaOfertasRecibidas = new LinkedHashMap<>();
+    final private Map<String, Integer> mapaOfertasRecibidas = new ConcurrentHashMap<>();
 
     public Map<String, Product> getMapaProductosSolicitados() {
         return mapaProductosSolicitados;

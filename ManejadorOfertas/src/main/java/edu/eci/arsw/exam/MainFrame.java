@@ -37,6 +37,15 @@ public class MainFrame extends javax.swing.JFrame {
      */
     public MainFrame() {
         initComponents();
+        statusArea = new javax.swing.JTextArea();
+        statusArea.setEditable(false);
+        jScrollPane2.setViewportView(statusArea);
+    }
+    
+    private javax.swing.JTextArea statusArea;
+
+    public void addStatus(String msg) {
+        statusArea.append(msg + "\n");
     }
 
     
