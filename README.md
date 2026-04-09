@@ -93,3 +93,19 @@ graph TD
 
 ## 6. Capturas de Pantalla
 *(Nota: En un entorno real, aquí se adjuntarían las capturas del funcionamiento del servidor mostrando los ganadores y los clientes imprimiendo sus mensajes)*
+
+
+git config --global user.name "DiegoFernandoChavarroCastillo"
+git config --global user.email "diego.chavarro-c@mail.escuelaing.edu.co"
+
+# Ver configuración global
+git config --global user.name
+git config --global user.email
+
+# Ver configuración local (si estás dentro de un repo)
+git config --local user.name
+git config --local user.email
+
+# Ver toda la configuración
+git config --global --list
+git config --local --list
